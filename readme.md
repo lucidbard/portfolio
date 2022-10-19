@@ -9,9 +9,11 @@ These are my projects...
 
 [Sketch 1](./sketch/)
 
-<iframe src="./sketch/"></iframe>
- - Description:
-  This white circle represents your thoughts and feelings as they track around your consciousness. It is both small, yet unavoidable. It is not encompassing more than the point at which your attention is located. It is you.
-Sketch 2
+<iframe src="./sketch/" width="400" height="300"></iframe>
 
-Sketch 3
+## Description: 
+  This white circle represents your thoughts and feelings as they track around your consciousness. It is both small, yet unavoidable. It is not encompassing more than the point at which your attention is located. It is you.
+
+# Sketch 2
+
+# Sketch 3
