@@ -186,7 +186,7 @@ function setup() {
 
 function draw() {
   background(0)
-  for (let i = 0; i < people.length; i++) {
+  for (let i = 0; i < entityList.length; i++) {
     entityList[i].draw()
     entityList[i].move(obstacleList)
   }
