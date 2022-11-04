@@ -144,8 +144,8 @@ let entityList = []
 timer = 0
 
 function mousePressed() {
-    for(let c of people) {
-        c.click()
+    for (let c of entityList) {
+      c.click()
     }
 }
 let mainCharacter, playerCharacter, obstacle
