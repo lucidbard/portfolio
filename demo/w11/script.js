@@ -9,7 +9,9 @@ class Collider {
         this.height = h;
         this.type = "rect"
     }
-    test(p)
+    test(newPos) {
+      
+    }
 }
 
 class Entity {
