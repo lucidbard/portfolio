@@ -133,7 +133,7 @@ class Player extends Character {
     }
 }
 
-let obsctacleList = []
+let entityList = []
 timer = 0
 
 function mousePressed() {
