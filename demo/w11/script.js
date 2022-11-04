@@ -29,8 +29,6 @@ class Collider {
         //     )
         this.collided = collideTopY && collideLeftX
         return this.collided
-    }
-
       }
     }
 }
