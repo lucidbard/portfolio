@@ -161,9 +161,9 @@ function setup()
     rectMode(CENTER)
     textAlign(CENTER)
     mainCharacter = new Character("Bob", width/2, height/2, 30)
-    people.push(mainCharacter)
+    entityList.push(mainCharacter)
     playerCharacter = new Player("Me", width/4, height/2, 30)
-    people.push(playerCharacter)
+    entityList.push(playerCharacter)
     obstacle = new Obstacle(playerCharacter.pos.x+50, playerCharacter.pos.y, 40,40)
 }
 
