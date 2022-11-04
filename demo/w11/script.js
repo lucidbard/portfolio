@@ -190,6 +190,5 @@ function draw() {
     entityList[i].draw()
     entityList[i].move(entityList)
   }
-  obstacle.draw()
   circle(mouseX, mouseY, 20)
 }
