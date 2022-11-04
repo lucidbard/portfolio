@@ -65,8 +65,8 @@ class Character extends Entity {
       console.log("You clicked me!")
     }
   }
-  move(obstacle) {
-    let move = Vector
+  move(obstacleList) {
+    obstacleLis
     if (!obstacle.collide(this.collider)) {
       this.x += this.vx
       this.y += this.vy
