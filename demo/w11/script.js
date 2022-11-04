@@ -46,7 +46,6 @@ class Character extends Entity {
   vel;
   lx = 0
   ly = 0
-  pos;
   width
   collider
 
@@ -54,8 +53,6 @@ class Character extends Entity {
     super(x, y)
     this.name = myName
     this.waldo = false
-    this.x = x
-    this.y = y
     this.width = width
     this.collider = new Collider(createVector(x, y), width, width, "rect")
   }
