@@ -99,12 +99,19 @@ class Character extends Entity {
 }
 class Player extends Character {
     interact() {
-        for(let i = 0; i < people.length; i++) {
-            if(people[i] !== this) {
-                if(dist(this.pos.x+this.lx*10,this.pos.y+this.ly*10,people[i].pos.x,people[i].pos.y) < 40) {
-                    console.log(people[i].name)
-                }
+        for (let i = 0; i < entityList.length; i++) {
+          if (entityList[i] !== this) {
+            if (
+              dist(
+                this.pos.x + this.lx * 10,
+                this.pos.y + this.ly * 10,
+                entityList[i].pos.x,
+                entityList[i].pos.y
+              ) < 40
+            ) {
+              console.log(entityList[i].name)
             }
+          }
         }
     }
     move(other) {
