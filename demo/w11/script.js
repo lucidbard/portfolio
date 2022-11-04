@@ -113,19 +113,19 @@ class Player extends Character {
         if(keyIsPressed) {
         switch(keyCode) {
             case UP_ARROW:
-                this.vy=-1;
+                this.vel.y=-1;
                 this.ly=-1
                 break;
             case DOWN_ARROW:
-                this.vy=1;
+                this.vel.y=1;
                 this.ly=1
                 break;
             case LEFT_ARROW:
                 this.vel.x=-1;
-                this.lx=-1
+                this.vel.y=-1
                 break;
             case RIGHT_ARROW:
-                this.vx=1;
+                this.vel.x=1;
                 this.lx=1
             break;
         }
