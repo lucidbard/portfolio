@@ -43,12 +43,10 @@ class Obstacle extends Entity {
 
 class Character extends Entity {
   name
-  vx = 0
-  vy = 0
+  vel;
   lx = 0
   ly = 0
-  x
-  y
+  pos;
   width
   collider
 
