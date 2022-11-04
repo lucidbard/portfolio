@@ -1,10 +1,10 @@
 class Collider {
-    position;
+    pos;
     width;
     height;
     type;
     constructor(p, w, h, t) {
-        this.p = p;
+        this.pos = p;
         this.width = w;
         this.height = h;
         this.type = "rect"
