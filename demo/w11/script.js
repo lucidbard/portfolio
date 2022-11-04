@@ -101,7 +101,6 @@ class Character extends Entity {
     }
 }
 class Player extends Character {
-    collider;
     interact() {
         for(let i = 0; i < people.length; i++) {
             if(people[i] !== this) {
