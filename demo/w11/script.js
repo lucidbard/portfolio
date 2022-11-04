@@ -121,7 +121,7 @@ class Player extends Character {
                 this.ly=1
                 break;
             case LEFT_ARROW:
-                this.vx=-1;
+                this.vel.x=-1;
                 this.lx=-1
                 break;
             case RIGHT_ARROW:
