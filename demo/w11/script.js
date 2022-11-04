@@ -10,7 +10,7 @@ class Collider {
         this.type = "rect"
     }
     test(newPos) {
-      
+
     }
 }
 
@@ -29,28 +29,6 @@ class Obstacle extends Entity {
         this.y = y
         this.w = w
         this.h = h
-    }
-    collide(other) {
-        // Return true if the passed in rect intersects this.
-        // let collideRightX
-        let leftX = this.x - this.w/2
-        strokeWeight(5)
-        line(leftX, this.y-50, leftX, this.y+50)
-        strokeWeight(1)
-        let collideLeftX = leftX > other.x+other.width
-        let topY = this.y-this.w/2;
-        stroke("red")
-        strokeWeight(5)
-        line(this.x-60, topY, this.x+60, topY)
-        strokeWeight(1)
-        let collideTopY = topY > other.y-other.width/2
-
-        // let collideBottomY
-        // return ((collideRightX || collideLeftX) &&
-        //     (collideTopY || collideBottomY)
-        //     )
-        this.collided = collideTopY && collideLeftX
-        return this.collided
     }
     draw() {
         if(this.collided) {
