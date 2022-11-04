@@ -188,7 +188,7 @@ function draw() {
   background(0)
   for (let i = 0; i < entityList.length; i++) {
     entityList[i].draw()
-    entityList[i].move(obstacleList)
+    entityList[i].move(entityList)
   }
   obstacle.draw()
   circle(mouseX, mouseY, 20)
