@@ -188,8 +188,10 @@ function draw() {
   background(0)
   for (let i = 0; i < entityList.length; i++) {
     entityList[i].draw()
-    if
+    if(entityList[i].move) {
     entityList[i].move(entityList)
+    }
+      
   }
   circle(mouseX, mouseY, 20)
 }
