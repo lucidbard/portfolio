@@ -12,8 +12,10 @@ class Collider {
 }
 
 class Entity {
-    x;
-    y;
+    pos;
+    constructor(x,y) {
+      pos = createVector(x,y)
+    }
 }
 
 class Obstacle extends Entity {
