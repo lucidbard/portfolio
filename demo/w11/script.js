@@ -60,45 +60,45 @@ class Obstacle extends Entity {
 }
 
 class Character extends Entity {
-    name;
-    vx=0;
-    vy=0;
-    lx=0;
-    ly=0;
-    x;
-    y;
-    width;
-    constructor(myName, x, y, width) {
-        super(x,y)
-        this.name = myName;
-        this.waldo = false;
-        this.x = x
-        this.y = y
-        this.width = width
+  name
+  vx = 0
+  vy = 0
+  lx = 0
+  ly = 0
+  x
+  y
+  width
+  collider
+
+  constructor(myName, x, y, width) {
+    super(x, y)
+    this.name = myName
+    this.waldo = false
+    this.x = x
+    this.y = y
+    this.width = width
+  }
+  hit(x, y) {
+    let distance = dist(x, y, this.x, this.y)
+    return distance < 15
+  }
+  click() {
+    if (this.hit(mouseX, mouseY)) {
+      console.log("You clicked me!")
     }
-    hit(x, y) {
-        let distance = dist(x, y, 
-            this.x, 
-            this.y) 
-        return (distance < 15)
+  }
+  move(obstacle) {
+    if (!obstacle.collide(this)) {
+      this.x += this.vx
+      this.y += this.vy
     }
-    click() {
-        if(this.hit(mouseX, mouseY)) {
-            console.log("You clicked me!")
-        }
-    }
-    move(obstacle) {
-        if(!obstacle.collide(this)) {
-            this.x += this.vx;
-            this.y += this.vy;
-        }
-    }
-    draw() {
-        fill(255)
-        square(this.x, this.y, 30)
-        text(this.name, this.x,this.y+30)
-        circle(this.x+this.lx*10, this.y+this.ly*10, 10)
-    }
+  }
+  draw() {
+    fill(255)
+    square(this.x, this.y, this.width)
+    text(this.name, this.x, this.y + 30)
+    circle(this.x + this.lx * 10, this.y + this.ly * 10, 10)
+  }
 }
 class Player extends Character {
     interact() {
