@@ -189,7 +189,7 @@ function draw() {
   for (let i = 0; i < entityList.length; i++) {
     entityList[i].draw()
     if(entityList[i].move) {
-    entityList[i].move(entityList)
+      entityList[i].move(entityList)
     }
       
   }
