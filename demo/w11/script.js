@@ -1,16 +1,37 @@
 class Collider {
     pos;
-    width;
-    height;
+    size;
     type;
     constructor(p, w, h, t) {
         this.pos = p;
-        this.width = w;
-        this.height = h;
+        this.size = createVector(w,h);
         this.type = "rect"
     }
-    test(newPos) {
+    test(other, vec) {
+      if(vec) {
+        // Return true if the passed in rect intersects this.
+        // let collideRightX
+        let leftX = this.pos.x - this.size.x/2
+        strokeWeight(5)
+        line(leftX, this.pos.y-50, leftX, this.pos.y+50)
+        strokeWeight(1)
+        let collideLeftX = leftX > other.size.x + other.size.x
+        let topY = this.pos.y-this.size.y/2;
+        stroke("red")
+        strokeWeight(5)
+        line(this.pos.x-60, topY, this.pos.x+60, topY)
+        strokeWeight(1)
+        let collideTopY = topY > other.pos.y-other.size.y/2
 
+        // let collideBottomY
+        // return ((collideRightX || collideLeftX) &&
+        //     (collideTopY || collideBottomY)
+        //     )
+        this.collided = collideTopY && collideLeftX
+        return this.collided
+    }
+
+      }
     }
 }
 
@@ -23,12 +44,10 @@ class Entity {
 
 class Obstacle extends Entity {
     collider;
+    size;
     constructor(x, y, w, h) {
         super(x,y)
-        this.x = x
-        this.y = y
-        this.w = w
-        this.h = h
+        this.size = createVector(w,h)
     }
     draw() {
         if(this.collided) {
@@ -37,7 +56,7 @@ class Obstacle extends Entity {
             fill("white")
         }
         
-        rect(this.x, this.y, this.w, this.h)
+        rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
     }
 }
 
@@ -46,18 +65,18 @@ class Character extends Entity {
   vel;
   lx = 0
   ly = 0
-  width
+  size
   collider
 
   constructor(myName, x, y, width) {
     super(x, y)
     this.name = myName
     this.waldo = false
-    this.width = width
-    this.collider = new Collider(createVector(x, y), width, width, "rect")
+    this.size = createVector(width,width)
+    this.collider = new Collider(createVector(x, y), size.x, size.y, "rect")
   }
   hit(x, y) {
-    let distance = dist(x, y, this.x, this.y)
+    let distance = dist(x, y, this.pos.x, this.pos.y)
     return distance < 15
   }
   click() {
@@ -75,16 +94,16 @@ class Character extends Entity {
   }
   draw() {
     fill(255)
-    square(this.x, this.y, this.width)
-    text(this.name, this.x, this.y + 30)
-    circle(this.x + this.lx * 10, this.y + this.ly * 10, 10)
+    square(this.pos.x, this.pos.y, this.size.x)
+    text(this.name, this.pos.x, this.pos.y + 30)
+    circle(this.pos.x + this.lx * 10, this.pos.y + this.ly * 10, 10)
   }
 }
 class Player extends Character {
     interact() {
         for(let i = 0; i < people.length; i++) {
             if(people[i] !== this) {
-                if(dist(this.x+this.lx*10,this.y+this.ly*10,people[i].x,people[i].y) < 40) {
+                if(dist(this.pos.x+this.lx*10,this.pos.y+this.ly*10,people[i].pos.x,people[i].pos.y) < 40) {
                     console.log(people[i].name)
                 }
             }
@@ -99,18 +118,18 @@ class Player extends Character {
                 this.vy=-1;
                 this.ly=-1
                 break;
-                case DOWN_ARROW:
-                    this.vy=1;
-                    this.ly=1
-                    break;
-                    case LEFT_ARROW:
-                        this.vx=-1;
-                        this.lx=-1
-                        break;
-                        case RIGHT_ARROW:
-                            this.vx=1;
-                            this.lx=1
+            case DOWN_ARROW:
+                this.vy=1;
+                this.ly=1
                 break;
+            case LEFT_ARROW:
+                this.vx=-1;
+                this.lx=-1
+                break;
+            case RIGHT_ARROW:
+                this.vx=1;
+                this.lx=1
+            break;
         }
     }
     }
@@ -118,13 +137,7 @@ class Player extends Character {
 
 let people = []
 timer = 0
-function generation() {
-    for(let i = 0; i < 100; i++) {
-        let james = new Person("James")
-        people.push(james)
-    }
-    people[people.length-1].waldo = true;
-}
+
 function mousePressed() {
     for(let c of people) {
         c.click()
@@ -134,10 +147,10 @@ let mainCharacter, playerCharacter, obstacle
 function keyReleased() {
     // console.log("Released")
     if(keyCode == UP_ARROW || keyCode == DOWN_ARROW) {
-        playerCharacter.vy = 0
+        playerCharacter.vel.y = 0
     }
     if(keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
-        playerCharacter.vx = 0
+        playerCharacter.vel.x = 0
     }
     if(key == "x") {
         console.log("Interacting")
@@ -153,7 +166,7 @@ function setup()
     people.push(mainCharacter)
     playerCharacter = new Player("Me", width/4, height/2, 30)
     people.push(playerCharacter)
-    obstacle = new Obstacle(playerCharacter.x+50, playerCharacter.y, 40,40)
+    obstacle = new Obstacle(playerCharacter.pos.x+50, playerCharacter.pos.y, 40,40)
 }
 
 function draw()
