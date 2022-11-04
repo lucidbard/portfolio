@@ -133,7 +133,7 @@ class Player extends Character {
     }
 }
 
-let people = []
+let obsctacleList = []
 timer = 0
 
 function mousePressed() {
@@ -172,7 +172,7 @@ function draw()
     background(0)
     for(let i = 0; i < people.length; i++) {
         people[i].draw()
-        people[i].move(obstacle)
+        people[i].move(obstacleList)
     }
     obstacle.draw()
     circle(mouseX, mouseY, 20)
