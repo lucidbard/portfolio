@@ -14,7 +14,7 @@ class Collider {
 class Entity {
     pos;
     constructor(x,y) {
-      pos = createVector(x,y)
+      this.pos = createVector(x,y)
     }
 }
 
