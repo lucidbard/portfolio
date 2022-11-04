@@ -66,11 +66,12 @@ class Character extends Entity {
     }
   }
   move(obstacleList) {
-    obstacleLis
-    if (!obstacle.collide(this.collider)) {
-      this.x += this.vx
-      this.y += this.vy
+    for(let obstacle of obstacleList) {
+      if (obstacle.collider.test(this.collider, this.vel)) {
+        return
+      }
     }
+      this.pos.add(this.vel)
   }
   draw() {
     fill(255)
