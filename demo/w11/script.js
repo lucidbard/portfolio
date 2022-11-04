@@ -89,6 +89,7 @@ class Character extends Entity {
     }
   }
   move(obstacle) {
+    let move = Vector.ne
     if (!obstacle.collide(this.collider)) {
       this.x += this.vx
       this.y += this.vy
