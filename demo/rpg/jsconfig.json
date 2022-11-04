@@ -1,0 +1,7 @@
+{
+  "include": [
+    "*.js",
+    "libraries/*.js",
+    "/home/lucid/.vscode-server/extensions/wmcicompsci.cs30-p5-1.5.0/p5types/global.d.ts"
+  ]
+}
