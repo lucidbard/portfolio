@@ -17,6 +17,7 @@ class Entity {
 }
 
 class Obstacle extends Entity {
+    collider;
     constructor(x, y, w, h) {
         super(x,y)
         this.x = x
