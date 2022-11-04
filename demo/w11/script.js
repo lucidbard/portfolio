@@ -165,6 +165,7 @@ function setup()
     playerCharacter = new Player("Me", width/4, height/2, 30)
     entityList.push(playerCharacter)
     obstacle = new Obstacle(playerCharacter.pos.x+50, playerCharacter.pos.y, 40,40)
+    obstacleList.push(obstacle)
 }
 
 function draw()
