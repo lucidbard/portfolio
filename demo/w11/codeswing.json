@@ -1,6 +1,6 @@
 {
   "scripts": [
-    "http://localhost:8000/p5.js"
+    "http://localhost:3030/p5.js"
   ],
   "styles": [],
   "showConsole": true
