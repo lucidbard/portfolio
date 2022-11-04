@@ -71,7 +71,7 @@ class Character extends Entity {
     this.name = myName
     this.waldo = false
     this.size = createVector(width,width)
-    this.collider = new Collider(createVector(x, y), size.x, size.y, "rect")
+    this.collider = new Collider(createVector(x, y), this.size.x, this.size.y, "rect")
   }
   hit(x, y) {
     let distance = dist(x, y, this.pos.x, this.pos.y)
