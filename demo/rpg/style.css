@@ -5,4 +5,5 @@ html, body {
 
 canvas {
   display: block;
+  margin: -2px;
 }
