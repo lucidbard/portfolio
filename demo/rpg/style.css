@@ -1,7 +1,7 @@
 html, body {
   margin: -6px;
   padding: -6px;
-  overflow: none;
+  overflow: 'hidden';
 }
 
 canvas {
