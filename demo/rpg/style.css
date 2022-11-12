@@ -8,6 +8,6 @@ html, body {
 canvas {
   display: block;
   padding: 0;;
-  margin: -6px;
+  margin: -10px;
   overflow: none;
 }
