@@ -38,7 +38,7 @@ class Obstacle extends Entity {
   // other.x
   // other.y
   // other.width
-  collide(other) {
+  collide(other, move) {
     // console.log(other)
     // Return true if the passed in rect intersects this.
     // let collideRightX
@@ -46,7 +46,7 @@ class Obstacle extends Entity {
     strokeWeight(5)
     line(leftX, this.y - 50, leftX, this.y + 50)
     strokeWeight(1)
-    let collideLeftX = leftX > other.x + other.width
+    let collideLeftX = leftX > (other.x+move.x) - other.width/2
     let topY = this.y - this.w / 2
     stroke("red")
     strokeWeight(5)
