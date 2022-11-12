@@ -1,12 +1,10 @@
 html, body {
   margin: -6px;
   padding: -6px;
-  overflow: 'hidden';
 }
 
 canvas {
   margin: -2px !important;
   padding: -6px;
   display: block;
-  overflow: none;
 }
