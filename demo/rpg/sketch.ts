@@ -59,7 +59,7 @@ class Obstacle extends Entity {
     //     (collideTopY || collideBottomY)
     //     )
     this.collided = collideTopY && collideLeftX
-    return this.collide
+    return this.collided
   }
   draw() {
     if (this.collided) {
