@@ -46,7 +46,7 @@ class Obstacle extends Entity {
     strokeWeight(5)
     line(leftX, this.y - 50, leftX, this.y + 50)
     strokeWeight(1)
-    let collideLeftX = leftX > (other.x+move.x) - other.width/2
+    let collideLeftX = leftX > (other.x+move.x) - (other.width/2)
     let topY = this.y - this.w / 2
     stroke("red")
     strokeWeight(5)
