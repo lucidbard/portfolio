@@ -1,0 +1,7 @@
+{
+  "scripts": [
+    "http://localhost:3000/p5.js"
+  ],
+  "styles": [],
+  "showConsole": true
+}

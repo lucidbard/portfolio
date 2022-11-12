@@ -1,4 +1,4 @@
-/// <reference path="node_modules/@types/p5/global.d.ts" />
+/// <reference path="../rpg/node_modules/@types/p5/global.d.ts" />
 
 class Collider {
   x
@@ -182,7 +182,7 @@ function keyReleased() {
   }
 }
 function setup() {
-  createCanvas(windowWidth, windowHeight-4)
+  createCanvas(windowWidth, windowHeight)
   rectMode(CENTER)
   textAlign(CENTER)
   mainCharacter = new Character("Bob", width / 2, height / 2, 30)
