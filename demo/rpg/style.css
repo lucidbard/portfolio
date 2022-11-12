@@ -7,6 +7,6 @@ html, body {
 
 canvas {
   display: block;
-  margin: -4px;
+  margin: -6px;
   overflow: none;
 }
