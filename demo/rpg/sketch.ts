@@ -18,9 +18,16 @@ class Collider {
 class Entity {
   x
   y
+  constructor(x,y) {
+    this.x = x
+    this.y = y
+  }
 }
 
 class Obstacle extends Entity {
+  collided = false;
+  w;
+  h;
   constructor(x, y, w, h) {
     super(x, y)
     this.x = x
@@ -32,15 +39,13 @@ class Obstacle extends Entity {
   // other.y
   // other.width
   collide(other) {
-    console.log(other)
+    // console.log(other)
     // Return true if the passed in rect intersects this.
     // let collideRightX
     let leftX = this.x - this.w / 2
     strokeWeight(5)
     line(leftX, this.y - 50, leftX, this.y + 50)
     strokeWeight(1)
-    console.log(other.x)
-    console.log(other.width)
     let collideLeftX = leftX > other.x + other.width
     let topY = this.y - this.w / 2
     stroke("red")
@@ -54,7 +59,7 @@ class Obstacle extends Entity {
     //     (collideTopY || collideBottomY)
     //     )
     this.collided = collideTopY && collideLeftX
-    return this.collided
+    return this.collide
   }
   draw() {
     if (this.collided) {
@@ -79,7 +84,6 @@ class Character extends Entity {
   constructor(myName, x, y, width) {
     super(x, y)
     this.name = myName
-    this.waldo = false
     this.x = x
     this.y = y
     this.width = width
@@ -118,7 +122,7 @@ class Player extends Character {
             people[i].y
           ) < 40
         ) {
-          console.log(people[i].name)
+          // console.log(people[i].name)
         }
       }
     }
@@ -150,14 +154,14 @@ class Player extends Character {
 }
 
 let people = []
-timer = 0
-function generation() {
-  for (let i = 0; i < 100; i++) {
-    let james = new Person("James")
-    people.push(james)
-  }
-  people[people.length - 1].waldo = true
-}
+// timer = 0
+// function generation() {
+//   for (let i = 0; i < 100; i++) {
+//     let james = new Person("James")
+//     people.push(james)
+//   }
+//   people[people.length - 1].waldo = true
+// }
 function mousePressed() {
   for (let c of people) {
     c.click()
