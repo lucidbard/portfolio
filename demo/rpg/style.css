@@ -3,7 +3,7 @@ html, body {
   padding: -6px;
 }
 
-canvas {
+.p5Canvas {
   margin: -2px !important;
   padding: -6px;
   display: block;
