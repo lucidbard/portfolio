@@ -4,7 +4,8 @@ html, body {
 }
 
 .p5Canvas {
-  margin: -2px !important;
+  margin: -5px !important;
   padding: -6px;
   display: block;
+  overflow: none;
 }
