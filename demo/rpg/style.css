@@ -5,7 +5,7 @@ html, body {
 }
 
 canvas {
-  margin: -2px !important;
+  margin: -6px !important;
   padding: -6px;
   display: block;
   overflow: none;
