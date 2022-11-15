@@ -1,92 +1,19 @@
-/// <reference path="../rpg/node_modules/@types/p5/global.d.ts" />
-
-class Collider {
-  x
-  y
-  width
-  height
-  type
-  constructor(x, y, w, h, t) {
-    this.x = x
-    this.y = y
-    this.width = w
-    this.height = h
-    this.type = "rect"
-  }
-}
-
-class Entity {
-  x
-  y
-  constructor(x,y) {
-    this.x = x
-    this.y = y
-  }
-}
-
-class Obstacle extends Entity {
+class Obstacle {
   collided = false;
-  w;
-  h;
+  sprite;
   constructor(x, y, w, h) {
-    super(x, y)
-    this.x = x
-    this.y = y
-    this.w = w
-    this.h = h
-  }
-  // other.x
-  // other.y
-  // other.width
-  collide(other) {
-    // console.log(other)
-    // Return true if the passed in rect intersects this.
-    // let collideRightX
-    let leftX = this.x - this.w / 2
-    strokeWeight(5)
-    line(leftX, this.y - 50, leftX, this.y + 50)
-    strokeWeight(1)
-    let collideLeftX = leftX > other.x + other.width
-    let topY = this.y - this.w / 2
-    stroke("red")
-    strokeWeight(5)
-    line(this.x - 60, topY, this.x + 60, topY)
-    strokeWeight(1)
-    let collideTopY = topY > other.y - other.width / 2
-
-    // let collideBottomY
-    // return ((collideRightX || collideLeftX) &&
-    //     (collideTopY || collideBottomY)
-    //     )
-    this.collided = collideTopY && collideLeftX
-    return this.collide
-  }
-  draw() {
-    if (this.collided) {
-      fill("red")
-    } else {
-      fill("white")
-    }
-
-    rect(this.x, this.y, this.w, this.h)
+    this.sprite = new Sprite(x, y, w, h)
   }
 }
 
-class Character extends Entity {
+class Character {
   name
-  vx = 0
-  vy = 0
-  lx = 0
-  ly = 0
-  x
-  y
-  width
   constructor(myName, x, y, width) {
-    super(x, y)
     this.name = myName
-    this.x = x
-    this.y = y
-    this.width = width
+    this.sprite = new Sprite(x, y, width, width)
+    this.sprite.draw = this.draw
+    this.lx = 1
+    this.ly = 0
   }
   hit(x, y) {
     let distance = dist(x, y, this.x, this.y)
@@ -97,57 +24,42 @@ class Character extends Entity {
       console.log("You clicked me!")
     }
   }
-  move(obstacle) {
-    if (!obstacle.collide(this)) {
-      this.x += this.vx
-      this.y += this.vy
-    }
-  }
   draw() {
     fill(255)
-    square(this.x, this.y, 30)
-    text(this.name, this.x, this.y + 30)
-    circle(this.x + this.lx * 10, this.y + this.ly * 10, 10)
+    square(0, 0, 30)
+    // text(this.name, 0, 100)
+    // if(this.sprite !== undefined) {
+    let loc = p5.Vector.fromAngle(radians(
+      this.rotation
+      // 60
+      ))
+      // console.log(loc)
+      fill(255)
+      stroke(255,0,0)
+    circle(15, 0, 10)
+    // circle(loc.x*15, loc.y*30, 10)
+    // }
+    // console.log(loc)
   }
 }
 class Player extends Character {
+  constructor(name, x, y, w) {
+    super(name, x, y, w)
+    this.sprite.rotationLock = true
+  }
   interact() {
     for (let i = 0; i < people.length; i++) {
       if (people[i] !== this) {
         if (
           dist(
-            this.x + this.lx * 10,
-            this.y + this.ly * 10,
-            people[i].x,
-            people[i].y
+            this.sprite.x + this.lx * 10,
+            this.sprite.y + this.ly * 10,
+            people[i].sprite.x,
+            people[i].sprite.y
           ) < 40
         ) {
           // console.log(people[i].name)
         }
-      }
-    }
-  }
-  move(other) {
-    super.move(other)
-    // console.log(keyCode)
-    if (keyIsPressed) {
-      switch (keyCode) {
-        case UP_ARROW:
-          this.vy = -1
-          this.ly = -1
-          break
-        case DOWN_ARROW:
-          this.vy = 1
-          this.ly = 1
-          break
-        case LEFT_ARROW:
-          this.vx = -1
-          this.lx = -1
-          break
-        case RIGHT_ARROW:
-          this.vx = 1
-          this.lx = 1
-          break
       }
     }
   }
@@ -164,18 +76,48 @@ let people = []
 // }
 function mousePressed() {
   for (let c of people) {
+    if(c.overlap)
     c.click()
   }
 }
+
 let mainCharacter, playerCharacter, obstacle
+
+function keyPressed() {
+        switch (keyCode) {
+          case UP_ARROW:
+            playerCharacter.sprite.vel.y = -1
+            playerCharacter.ly = -1
+            break
+          case DOWN_ARROW:
+            playerCharacter.sprite.vel.y = 1
+            playerCharacter.ly = 1
+            // playerCharacter.sprite.rotation = 90
+            break
+          case LEFT_ARROW:
+            playerCharacter.sprite.vel.x = -1
+            playerCharacter.lx = -1
+            // playerCharacter.sprite.rotation = 180
+            break
+          case RIGHT_ARROW:
+            playerCharacter.sprite.vel.x = 1
+            playerCharacter.lx = 1
+            // playerCharacter.sprite.rotation = 0
+            break
+        }
+            playerCharacter.sprite.rotation=createVector(playerCharacter.lx,playerCharacter.ly).heading() 
+}
 function keyReleased() {
   // console.log("Released")
   if (keyCode == UP_ARROW || keyCode == DOWN_ARROW) {
-    playerCharacter.vy = 0
+    playerCharacter.sprite.vel.y = 0
+    // playerCharacter.ly = 0
   }
   if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
-    playerCharacter.vx = 0
+    playerCharacter.sprite.vel.x = 0
+    // playerCharacter.lx = 0
   }
+  playerCharacter.sprite.rotation=createVector(playerCharacter.lx,playerCharacter.ly).heading() 
   if (key == "x") {
     console.log("Interacting")
     playerCharacter.interact()
@@ -189,15 +131,9 @@ function setup() {
   people.push(mainCharacter)
   playerCharacter = new Player("Me", width / 4, height / 2, 30)
   people.push(playerCharacter)
-  obstacle = new Obstacle(playerCharacter.x + 50, playerCharacter.y, 40, 40)
+  obstacle = new Obstacle(playerCharacter.sprite.x + 50, playerCharacter.sprite.y, 40, 40)
 }
 
 function draw() {
   background(0)
-  for (let i = 0; i < people.length; i++) {
-    people[i].draw()
-    people[i].move(obstacle)
-  }
-  obstacle.draw()
-  circle(mouseX, mouseY, 20)
 }

@@ -1,20 +1,5 @@
 /// <reference path="node_modules/@types/p5/global.d.ts" />
 
-class Collider {
-  x
-  y
-  width
-  height
-  type
-  constructor(x, y, w, h, t) {
-    this.x = x
-    this.y = y
-    this.width = w
-    this.height = h
-    this.type = "rect"
-  }
-}
-
 class Entity {
   x
   y
